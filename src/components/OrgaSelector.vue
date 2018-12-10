@@ -37,7 +37,8 @@
         }
       }
     }
-    , methods: {
+    ,
+    methods: {
       handleChange(value) {
         let theRealValue = value[value.length - 1];
         this.$emit('input', theRealValue);
@@ -56,7 +57,7 @@
           value: item.orga.orgaId,
           label: item.orga.orgaName,
         };
-        //定义map的键是组织Id,别名parentIds
+        //定义map的键是组织Id,值是所有的父Id
         this.idMap[item.orga.orgaId] = parentIds;
         //如果当前组织对象有子节点
         if (item.children && item.children.length > 0) {
@@ -72,30 +73,32 @@
         }
         //返回封装好的数据
         return returnValue;
+      },
+      loadOrgaSelector() {
+        //进行初始化
+        this.http(this, 'get', this.api.orga.nestedOrga).then((data) => {
+          //定义一个数组
+          let finalArray = [];
+          //循环遍历,将每一个对象赋值到数组中
+          for (let i = 0; i < data.length; i++) {
+            //调用递归,如果有子节点,就封装子节点信息
+            let item = this.parseNode(data[i]);
+            //将每一个封装好的对象添加到数据中中
+            finalArray.push(item);
+          }
+          //将封装好的数据进行赋值
+          this.options = finalArray;
+          //将显示的值,根据键将自己的值加载最后
+          this.theValue = this.idMap[this.value].concat(this.value);
+        }).catch(responseType => {
+        })
       }
     },
     /**
      * 初始化方法
      */
     created() {
-      //进行初始化
-      this.http(this, 'get', this.api.orga.nestedOrga).then((data) => {
-        //定义一个数组
-        let finalArray = [];
-        //循环遍历,将每一个对象赋值到数组中
-        for (let i = 0; i < data.length; i++) {
-          //调用递归,如果有子节点,就封装子节点信息
-          let item = this.parseNode(data[i]);
-          //将每一个封装好的对象添加到数据中中
-          finalArray.push(item);
-        }
-        //将封装好的数据进行赋值
-        this.options = finalArray;
-        //将显示的值,根据键将自己的值加载最后
-        this.theValue = this.idMap[this.value].concat(this.value);
-      }).catch(responseType => {
-
-      })
+      this.loadOrgaSelector();
     }
   }
 </script>
