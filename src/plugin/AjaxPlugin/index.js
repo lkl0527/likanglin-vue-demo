@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Qs from 'Qs';
 
 let AjaxPlugin = {};
 

@@ -10,6 +10,7 @@ import AjaxPlugin from '@/plugin/AjaxPlugin';
 import Qs from 'Qs';
 
 Vue.config.productionTip = false;
+Vue.use(vue);
 Vue.use(ElementUI);
 Vue.use(ApiPlugin);
 Vue.use(AjaxPlugin);
