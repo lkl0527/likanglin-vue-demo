@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Qs from 'Qs';
 
 let AjaxPlugin = {};
 
@@ -18,7 +17,7 @@ AjaxPlugin.install = function (Vue) {
       return new Promise((resolve, reject) => {
         let promise = null;
         if (method.toUpperCase() === "GET") {
-          apiUrl = apiUrl + "?" + Qs.stringify(params);
+          apiUrl = apiUrl + "?" + params;
           promise = axios[method](apiUrl);
         } else {
           promise = axios[method](apiUrl, params);

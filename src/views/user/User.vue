@@ -185,7 +185,17 @@
         if (this.selectedNode != null && this.selectedNode != undefined && this.selectedNode.orga != null) {
           this.params.orgaId = this.selectedNode.orga.orgaId;
         }
-        this.http(this, 'get', this.api.user.queryUsers, this.params).then((data) => {
+        var paramDate = "";
+        paramDate += "pageNum=" + this.params.pageNum + "&pageSize=" + this.params.pageSize;
+        if (this.params.userName != null) {
+          paramDate += "&userName=" + this.params.userName;
+        }
+        ;
+        if (this.params.orgaId != null) {
+          paramDate += "&orgaId=" + this.params.orgaId;
+        }
+        ;
+        this.http(this, 'get', this.api.user.queryUsers, paramDate).then((data) => {
           this.tableData = data.list;
           this.params.pages = data.pages;
           this.params.total = data.total;
