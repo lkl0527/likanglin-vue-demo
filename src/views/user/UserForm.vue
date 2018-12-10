@@ -40,6 +40,8 @@
 <script>
 
   import OrgaSelector from '@/components/OrgaSelector';
+  import axios from 'axios';
+  import {Notification} from 'element-ui';
 
   export default {
 
@@ -102,15 +104,26 @@
             userBirthday: this.formData.userBirthday,
             orgaId: this.formData.userBirthday,
           }
-          this.http(this, 'post', this.api.user.createUser, user).then(() => {
-            this.$parent.loadUsers();
+          axios.post(this.api.user.createUser, user).then((response) => {
+            let result = response.data;
+            if (result && result.code === "10000") {
+              this.$parent.loadUsers();
+              //关闭窗口
+              this.$emit('close');
+              this.$notify({
+                title: '成功',
+                message: '添加成功',
+                type: 'success'
+              });
+            }
+          }).catch((response) => {
+            let result = response.response.data;
             this.$notify({
-              title: '成功',
-              message: '添加成功',
-              type: 'success'
+              title: '提示',
+              message: result.error,
+              type: 'error'
             });
           })
-
         } else {
           /**
            * 调用更新用户
@@ -122,18 +135,27 @@
             userBirthday: this.formData.userBirthday,
             orgaId: this.formData.orgaId,
           }
-          this.http(this, 'put', this.api.user.modifyUser + this.formData.userId, user).then(() => {
-            this.$parent.loadUsers();
+          axios.put(this.api.user.modifyUser + this.formData.userId, user).then((response) => {
+            let result = response.data;
+            if (result && result.code === "10000") {
+              this.$parent.loadUsers();
+              //关闭窗口
+              this.$emit('close');
+              this.$notify({
+                title: '成功',
+                message: '修改成功',
+                type: 'success'
+              });
+            }
+          }).catch((response) => {
+            let result = response.response.data;
             this.$notify({
-              title: '成功',
-              message: '修改成功',
-              type: 'success'
+              title: '提示',
+              message: result.error,
+              type: 'error'
             });
           })
         }
-
-        //关闭窗口
-        this.$emit('close');
       },
       /**
        * 将close方法发送给父组件处理

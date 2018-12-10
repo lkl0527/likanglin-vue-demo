@@ -1,21 +1,32 @@
 <template>
   <div>
+    <div>
+      <el-container>
+        <el-header>Header</el-header>
+        <el-container>
+          <el-aside width="200px">Aside</el-aside>
+          <el-main>Main</el-main>
+        </el-container>
+      </el-container>
+    </div>
     <el-menu
       class="el-menu-demo"
       mode="horizontal"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
-      style="margin: 0px 0px 0px 0px"
     >
-      <el-menu-item index="1">组织用户后台管理系统</el-menu-item>
-
-      <el-menu-item index="2" disabled>欢迎你,{{loginUser.userName}}</el-menu-item>
-      <el-menu-item index="3" style="">
-        <el-button @click="logout">退出</el-button>
-      </el-menu-item>
+      <el-row>
+        <el-col :span="20"><div>
+          <el-menu-item index="1">组织用户后台管理系统</el-menu-item>
+        </div></el-col>
+        <el-col :span="2"><div>
+          <el-menu-item index="2" >欢迎你,{{loginUser.userName}}</el-menu-item>
+        </div></el-col>
+        <el-col :span="2"><div>
+          <el-menu-item index="3"><el-button @click="logout">退出</el-button></el-menu-item></div></el-col>
+      </el-row>
     </el-menu>
-
 
     <el-col :span="20">
       <div class="grid-content bg-purple"></div>
