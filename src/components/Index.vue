@@ -134,8 +134,8 @@
     background-size: 100% 100%;
   }
   .main {
-    width: 100%;
-    height: 100%;
+    width: 1200px;
+    height: 888px;
     background: #ffffff;
     background-size: 100% 100%;
   }
