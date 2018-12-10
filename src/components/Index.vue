@@ -28,7 +28,7 @@
       </el-row>
     </el-menu>
 
-    <el-container style="border: 1px solid #eee">
+    <el-container style="border: 0px solid #eee">
       <el-menu
         default-active="1"
         class="el-menu-vertical-demo"
@@ -132,7 +132,16 @@
     height: 100%;
     background: url(../assets/login.jpg) no-repeat;
     background-size: 100% 100%;
+    border:hidden;
+    overflow:hidden;
+    border:hidden;
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    top:0px;
+    left:0px;
   }
+
   .main {
     width: 1200px;
     height: 888px;
