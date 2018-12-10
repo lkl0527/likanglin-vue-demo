@@ -3,7 +3,7 @@
     <el-dialog :title='"用户"+actionName' :visible.sync="dialogFormVisible" @close="closeUserForm">
       <el-form :model="formData" ref="formData" :rules="rules" class="demo-ruleForm">
         <el-form-item label="用户名" prop="userName">
-          <el-input v-model="formData.userName"></el-input>
+          <el-input v-model="formData.userName" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" v-if="user===null|| user===undefined" prop="userPassword">
           <el-input v-model="formData.userPassword" type="password"></el-input>

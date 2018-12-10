@@ -1,33 +1,20 @@
 <template>
-
   <div>
-    <el-card style="margin: 100px 500px ;background-color:#112e75" class="index">
-      <el-form :model="formParams" style="width: 100%" class="loginUser">
-        <h3 class="title">系统登录</h3>
-        <el-card style="margin: 10px 230px ;background-color:#112e75;border-color: #112e75">
-          <el-form-item prop="username">
-            <td>
-              <h3 style="font-family: Calibri;color:white;">用户名:</h3>
-            </td>
-            <td>
-              <el-input v-model="formParams.username" placeholder="用户名"></el-input>
-            </td>
-          </el-form-item>
-
-          <el-form-item prop="password">
-            <td>
-              <h3 style="font-family: Calibri;color:white">密码:</h3>
-            </td>
-            <td>
-              <el-input v-model="formParams.password" type="password" placeholder="密码"></el-input>
-            </td>
-          </el-form-item>
-        </el-card>
+    <div class="Land">
+      <div class="topzi">系统登录</div>
+      <el-form :model="formParams" status-icon :rules="rules" ref="formParams" label-width="100px"
+               class="demo-ruleForm">
+        <el-form-item label="姓名" prop="userName">
+          <el-input v-model="formParams.userName"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="userPassword">
+          <el-input type="password" v-model="formParams.userPassword"></el-input>
+        </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="doLogin">登录</el-button>
+          <el-button type="primary" @click="doLogin()">提交</el-button>
         </el-form-item>
       </el-form>
-    </el-card>
+    </div>
   </div>
 </template>
 
@@ -43,9 +30,18 @@
         //定义表单数据
         formParams: {
           //定义表单数据
-          username: '',
-          password: ''
-        },
+          userName: '',
+          userPassword: ''
+        }, rules: {
+          userName: [
+            {required: true, message: '请输入用户名', trigger: 'blur'},
+            {min: 3, max: 5, message: '长度在 3  5 个字符', trigger: 'blur'}
+          ],
+          userPassword: [
+            {required: true, message: '请输入密码', trigger: 'blur'},
+            {min: 6, max: 10, message: '长度在 6 10 个字符', trigger: 'blur'}
+          ]
+        }
       };
     },
     /**
@@ -56,23 +52,24 @@
        * 用户登录方法
        */
       doLogin() {
-        if (this.formParams.username === '') {
-          this.$message({
+        if (this.formParams.userName === '') {
+          this.$notify({
+            title: '失败',
             message: '请输入用户名',
             type: 'info'
-          })
+          });
           return
         }
-        if (this.formParams.password === '') {
-          this.$message({
+        if (this.formParams.userPassword === '') {
+          this.$notify({
+            title: '失败',
             message: '请输入密码',
             type: 'info'
-          })
-          return
+          });
         }
         var user = {
-          userName: this.formParams.username,
-          userPassword: this.formParams.password
+          userName: this.formParams.userName,
+          userPassword: this.formParams.userPassword
         }
         /**
          * 调用后端的登录方法
@@ -96,17 +93,25 @@
 </script>
 
 <style>
-  .loginUser {
-    align-content: center;
-    height: 40px;
-    width: 400px;
-    background: #519fff;
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: url(../assets/login.jpg) no-repeat;
+    background-size: 100% 100%;
   }
 
-  .index {
-    width: 800px;
-    height: 400px;
-
+  #app .topzi {
+    font-size: 40px;
+    margin-bottom: 20px;
   }
 
+  #app .Land {
+    width: 30%;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 40px;
+  }
 </style>

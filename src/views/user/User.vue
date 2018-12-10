@@ -211,6 +211,9 @@
        * @param 毫秒值
        */
       parseBirthday(date) {
+        if (date === null || date === undefined || date === "") {
+          return null;
+        }
         date = new Date(date);
         let year = date.getFullYear();
         let month = date.getMonth() + 1;
@@ -227,7 +230,6 @@
        * 处理当前是第几页的时候出发的事件
        */
       handleCurrentChange(pageNo) {
-        console.log(pageNo);
         this.params.pageNum = pageNo;
         this.loadUsers();
       },

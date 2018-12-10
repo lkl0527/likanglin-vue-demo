@@ -1,7 +1,5 @@
 <template>
   <div class="block">
-
-
     <el-row>
       <el-col :span="6">
         <div>
@@ -39,10 +37,10 @@
             <el-col :span="24">
               <el-form :inline="true" align="left" class="demo-form-inline">
                 <el-form-item label="请选择组织">
-                  <OrgaSelector v-model="orgaIdToBeAdd"></OrgaSelector>
+                  <OrgaSelector v-model="orgaIdToBeAdd" ref="orgaSelector"></OrgaSelector>
                 </el-form-item>
                 <el-form-item>
-                  <el-input size="small" style="width: 200px;" v-model="orgaNameToBeAdd"></el-input>
+                  <el-input v-model="orgaNameToBeAdd" size="mini"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button size="mini" type="primary" @click="createOrga()" :disabled="orgaNameToBeAdd.length === 0">
@@ -114,9 +112,10 @@
           postData.orgaParent = this.orgaIdToBeAdd;
         }
         this.http(this, 'post', this.api.orga.createOrga, postData).then(() => {
+          this.orgaIdToBeAdd = 0;
           this.orgaNameToBeAdd = '';
+          this.$refs['orgaSelector'].loadOrgaSelector();
           this.loadOrgas();
-
           this.$notify({
             title: '成功',
             message: '添加成功',
@@ -134,6 +133,7 @@
           type: 'warning'
         }).then(() => {
           this.http(this, 'delete', this.api.orga.deleteOrga + data.orga.orgaId).then((data) => {
+            this.$refs['orgaSelector'].loadOrgaSelector();
             this.$message({
               type: 'success',
               message: '删除成功!'
@@ -181,6 +181,7 @@
        * 关闭窗口
        */
       closeForm() {
+        this.$refs['orgaSelector'].loadOrgaSelector();
         this.showOrgaForm = false;
       }
     },
@@ -190,7 +191,5 @@
     created() {
       this.loadOrgas();
     }
-
   }
-
 </script>

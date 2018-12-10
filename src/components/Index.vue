@@ -1,14 +1,5 @@
 <template>
   <div>
-    <div>
-      <el-container>
-        <el-header>Header</el-header>
-        <el-container>
-          <el-aside width="200px">Aside</el-aside>
-          <el-main>Main</el-main>
-        </el-container>
-      </el-container>
-    </div>
     <el-menu
       class="el-menu-demo"
       mode="horizontal"
@@ -17,31 +8,27 @@
       active-text-color="#ffd04b"
     >
       <el-row>
-        <el-col :span="20"><div>
-          <el-menu-item index="1">组织用户后台管理系统</el-menu-item>
-        </div></el-col>
-        <el-col :span="2"><div>
-          <el-menu-item index="2" >欢迎你,{{loginUser.userName}}</el-menu-item>
-        </div></el-col>
-        <el-col :span="2"><div>
-          <el-menu-item index="3"><el-button @click="logout">退出</el-button></el-menu-item></div></el-col>
+        <el-col :span="20">
+          <div>
+            <el-menu-item index="1">组织用户后台管理系统</el-menu-item>
+          </div>
+        </el-col>
+        <el-col :span="2">
+          <div>
+            <el-menu-item index="2">欢迎你,{{loginUser.userName}}</el-menu-item>
+          </div>
+        </el-col>
+        <el-col :span="2">
+          <div>
+            <el-menu-item index="3">
+              <el-button @click="logout">退出</el-button>
+            </el-menu-item>
+          </div>
+        </el-col>
       </el-row>
     </el-menu>
 
-    <el-col :span="20">
-      <div class="grid-content bg-purple"></div>
-    </el-col>
-    <el-col :span="2">
-      <div class="grid-content bg-purple"></div>
-    </el-col>
-    <el-col :span="2">
-      <div class="grid-content bg-purple">
-
-      </div>
-    </el-col>
-
     <el-container style="border: 1px solid #eee">
-
       <el-menu
         default-active="1"
         class="el-menu-vertical-demo"
@@ -66,7 +53,7 @@
         </el-submenu>
       </el-menu>
 
-      <el-container>
+      <el-container class="main">
         <el-main>
           <div>
             <User v-if="showUsers"></User>
@@ -96,7 +83,6 @@
         loginUser: '',
         showUsers: true,
         showOrgas: false,
-
       };
     },
     methods: {
@@ -141,5 +127,16 @@
 </script>
 
 <style>
-
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: url(../assets/login.jpg) no-repeat;
+    background-size: 100% 100%;
+  }
+  .main {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    background-size: 100% 100%;
+  }
 </style>
