@@ -6,7 +6,7 @@
           <el-input v-model="formData.userName" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" v-if="user===null|| user===undefined" prop="userPassword">
-          <el-input v-model="formData.userPassword" type="password"></el-input>
+          <el-input v-model="formData.userPassword" type="password" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item label="性别">
           <el-select v-model="formData.userGender" placeholder="请选择性别">
@@ -173,7 +173,7 @@
         this.formData.userId = this.user.userId;
         this.formData.userName = this.user.userName;
         this.formData.userPassword = this.user.userPassword;
-        this.formData.userGender = this.user.userGender == null ? 1 : (this.user.userGender == '男' ? 1 : 0);
+        this.formData.userGender = this.user.userGender == null ? 1 : (this.user.userGender == 1 ? 1 : 0);
         this.formData.userBirthday = this.user.userBirthday;
         this.formData.orgaId = this.user.orgaId;
       } else {

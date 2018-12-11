@@ -36,11 +36,11 @@
           <el-row>
             <el-col :span="24">
               <el-form :inline="true" align="left" class="demo-form-inline">
-                <el-form-item label="请选择组织">
+                <el-form-item label="请选择新增组织的上级组织">
                   <OrgaSelector v-model="orgaIdToBeAdd" ref="orgaSelector"></OrgaSelector>
                 </el-form-item>
                 <el-form-item>
-                  <el-input v-model="orgaNameToBeAdd" size="mini"></el-input>
+                  <el-input v-model="orgaNameToBeAdd" size="mini" placeholder="请输入组织名称"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button size="mini" type="primary" @click="createOrga()" :disabled="orgaNameToBeAdd.length === 0">

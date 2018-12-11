@@ -5,10 +5,10 @@
       <el-form :model="formParams" status-icon :rules="rules" ref="formParams" label-width="100px"
                class="demo-ruleForm">
         <el-form-item label="姓名" prop="userName">
-          <el-input v-model="formParams.userName"></el-input>
+          <el-input v-model="formParams.userName" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="userPassword">
-          <el-input type="password" v-model="formParams.userPassword"></el-input>
+          <el-input type="password" v-model="formParams.userPassword" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="doLogin()">提交</el-button>
@@ -96,7 +96,7 @@
   html, body {
     width: 100%;
     height: 100%;
-    background: url(../assets/login.jpg) ;
+    background: url(assets/login.jpg) ;
     background-size: 100% 100%;
     border:hidden;
 

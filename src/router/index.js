@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
-import Index from '@/components/Index'
+import Login from '@/Login'
+import Index from '@/Index'
 import User from '@/views/user/User'
 import Orga from '@/views/org/Orga'
 
