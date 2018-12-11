@@ -102,7 +102,7 @@
             userPassword: this.formData.userPassword,
             userGender: this.formData.userGender,
             userBirthday: this.formData.userBirthday,
-            orgaId: this.formData.userBirthday,
+            orgaId: this.formData.orgaId,
           }
           axios.post(this.api.user.createUser, user).then((response) => {
             let result = response.data;
